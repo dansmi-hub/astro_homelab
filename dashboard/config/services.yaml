@@ -1,0 +1,108 @@
+# Homepage Services Matrix - Astro Homelab
+
+- Media:
+    - Plex:
+        icon: plex.png
+        href: http://192.168.1.219:32400/web
+        description: Media Server
+        widget:
+          type: plex
+          url: http://192.168.1.219:32400
+          key: {{HOMEPAGE_VAR_PLEX_TOKEN}}
+
+    - Tautulli:
+        icon: tautulli.png
+        href: http://192.168.1.219:8181
+        description: Plex Analytics & Monitoring
+        widget:
+          type: tautulli
+          url: http://192.168.1.219:8181
+          key: {{HOMEPAGE_VAR_TAUTULLI_API_KEY}}
+
+    - Seerr:
+        icon: overseerr.png
+        href: http://192.168.1.219:5055
+        description: Media Request Management
+
+    - Audiobookshelf:
+        icon: audiobookshelf.png
+        href: http://192.168.1.219:13378
+        description: Audiobook & Podcast Server
+        widget:
+          type: audiobookshelf
+          url: http://192.168.1.219:13378
+          token: {{HOMEPAGE_VAR_AUDIOBOOKSHELF_TOKEN}}
+
+    - Calibre-Web:
+        icon: calibre-web.png
+        href: http://192.168.1.219:8083
+        description: E-Book Library Manager
+
+- Arr Stack:
+    - Sonarr:
+        icon: sonarr.png
+        href: http://192.168.1.219:8989
+        description: TV Series Management
+        widget:
+          type: sonarr
+          url: http://192.168.1.219:8989
+          key: {{HOMEPAGE_VAR_SONARR_API_KEY}}
+
+    - Radarr:
+        icon: radarr.png
+        href: http://192.168.1.219:7878
+        description: Movie Management
+        widget:
+          type: radarr
+          url: http://192.168.1.219:7878
+          key: {{HOMEPAGE_VAR_RADARR_API_KEY}}
+
+    - Prowlarr:
+        icon: prowlarr.png
+        href: http://192.168.1.219:9696
+        description: Indexer Manager
+        widget:
+          type: prowlarr
+          url: http://192.168.1.219:9696
+          key: {{HOMEPAGE_VAR_PROWLARR_API_KEY}}
+
+    - qBittorrent:
+        icon: qbittorrent.png
+        href: http://192.168.1.219:8080
+        description: Torrent Client (VPN Routed)
+        widget:
+          type: qbittorrent
+          url: http://192.168.1.219:8080
+          username: {{HOMEPAGE_VAR_QBITTORRENT_USERNAME}}
+          password: {{HOMEPAGE_VAR_QBITTORRENT_PASSWORD}}
+
+- Utilities & Gaming:
+    - OpenSpeedTest:
+        icon: openspeedtest.png
+        href: http://192.168.1.219:4321
+        description: Local Network Speed Test
+
+    - Foundry VTT:
+        icon: foundryvtt.png
+        href: http://192.168.1.219:30000
+        description: Virtual Tabletop Server
+
+    - Enshrouded:
+        icon: game-controller
+        href: udp://192.168.1.219:15637
+        description: Dedicated Game Server (UDP 15637)
+
+- Infrastructure:
+    - Pi-hole:
+        icon: pi-hole.png
+        href: http://192.168.1.219:8053/admin
+        description: Local DNS & Ad Blocking
+        widget:
+          type: pihole
+          url: http://192.168.1.219:8053
+          password: {{HOMEPAGE_VAR_PIHOLE_PASSWORD}}
+
+    - Nginx Proxy Manager:
+        icon: nginx-proxy-manager.png
+        href: http://192.168.1.219:8182
+        description: Reverse Proxy Management

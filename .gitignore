@@ -1,0 +1,27 @@
+# Environment files
+.env
+.env.local
+.env.*.local
+*.env
+
+# Runtime credentials & SSL Certificates
+*.crt
+*.key
+*.pem
+*.csr
+*.p12
+*.pfx
+
+# Container data & persistent directories
+appdata/
+data/
+logs/
+*.log
+*.sqlite
+*.db
+
+# OS & Editor generated files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

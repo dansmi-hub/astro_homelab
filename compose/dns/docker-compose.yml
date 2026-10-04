@@ -1,0 +1,50 @@
+name: dns-stack
+
+services:
+  unbound:
+    image: mvance/unbound:latest
+    container_name: unbound
+    restart: unless-stopped
+    volumes:
+      - /mnt/user/appdata/unbound/unbound.conf:/etc/unbound/unbound.conf:ro
+    networks:
+      - dns-internal
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z -w1 127.0.0.1 5335 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    restart: unless-stopped
+    ports:
+      - "192.168.1.219:53:53/tcp"
+      - "192.168.1.219:53:53/udp"
+      - "8053:80/tcp"
+    environment:
+      TZ: "${TZ:-America/New_York}"
+      FTLCONF_LOCAL_IPV4: "192.168.1.219"
+      FTLCONF_dns_upstreams: "unbound#5335"
+      WEBPASSWORD: "${PIHOLE_PASSWORD}"
+      REV_SERVER: "true"
+      REV_SERVER_DOMAIN: "home.arpa"
+      REV_SERVER_TARGET: "192.168.1.1"
+      REV_SERVER_CIDR: "192.168.1.0/24"
+    volumes:
+      - /mnt/user/appdata/pihole/pihole:/etc/pihole
+      - /mnt/user/appdata/pihole/dnsmasq.d:/etc/dnsmasq.d
+    networks:
+      - dns-internal
+      - homelab-net
+    depends_on:
+      unbound:
+        condition: service_started
+
+networks:
+  dns-internal:
+    driver: bridge
+    internal: true
+  homelab-net:
+    external: true
