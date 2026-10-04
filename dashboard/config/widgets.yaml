@@ -1,0 +1,11 @@
+# Homepage widgets configuration
+- resources:
+    label: System Resources
+    cpu: true
+    memory: true
+    disk:
+      - /mnt/user
+
+- search:
+    provider: duckduckgo
+    target: _blank

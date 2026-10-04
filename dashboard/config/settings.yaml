@@ -1,0 +1,22 @@
+# Homepage settings - Astro Mission Control
+title: "Astro Mission Control"
+theme: dark
+color: slate
+cardBlur: sm
+
+headerStyle: clean
+showFields: true
+
+layout:
+  Media:
+    style: grid
+    columns: 3
+  Arr Stack:
+    style: grid
+    columns: 4
+  Utilities & Gaming:
+    style: grid
+    columns: 3
+  Infrastructure:
+    style: grid
+    columns: 2

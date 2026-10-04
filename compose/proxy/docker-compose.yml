@@ -1,0 +1,28 @@
+name: proxy-stack
+
+services:
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8182:81"
+    environment:
+      TZ: "${TZ:-America/New_York}"
+      DISABLE_IPV6: "true"
+    volumes:
+      - /mnt/user/appdata/npm/data:/data
+      - /mnt/user/appdata/npm/letsencrypt:/etc/letsencrypt
+    networks:
+      - homelab-net
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:81/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  homelab-net:
+    external: true
